@@ -3,5 +3,7 @@ import SwiftSyntaxMacros
 
 @main
 struct NotchwellSDKMacrosPlugin: CompilerPlugin {
-    let providingMacros: [Macro.Type] = []
+    let providingMacros: [Macro.Type] = [
+        NotchExtensionMacro.self,
+    ]
 }
