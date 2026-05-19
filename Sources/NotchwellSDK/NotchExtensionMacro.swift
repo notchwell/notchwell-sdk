@@ -1,5 +1,5 @@
 @attached(member, names: arbitrary)
-@attached(peer, names: arbitrary)
+@attached(peer, names: named(notchwell_entry))
 public macro NotchExtension(
     identifier: String,
     displayName: String,
