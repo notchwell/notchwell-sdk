@@ -41,7 +41,17 @@ public struct NotchExtensionMacro: MemberMacro, PeerMacro {
         }
         """
 
-        return [cEntry]
+        let manifestEntry: DeclSyntax = """
+        @_cdecl("notchwell_manifest_json")
+        public func notchwell_manifest_json() -> UnsafePointer<CChar> {
+            let json = \(raw: typeName).manifestJSON
+            let buffer = UnsafeMutablePointer<CChar>.allocate(capacity: json.utf8.count + 1)
+            _ = json.withCString { src in strcpy(buffer, src) }
+            return UnsafePointer(buffer)
+        }
+        """
+
+        return [cEntry, manifestEntry]
     }
 
     private static func extractTypeName(from declaration: some SyntaxProtocol) throws -> String {
