@@ -8,8 +8,8 @@ public protocol Activity {
     associatedtype Compact: CompactView
     associatedtype Expanded: ExpandedView
 
-    var compact: Compact { get }
-    var expanded: Expanded { get }
+    @MainActor var compact: Compact { get }
+    @MainActor var expanded: Expanded { get }
 
     var priority: ActivityPriority { get }
     var screenRecordingVisibility: ScreenRecordingVisibility? { get }
